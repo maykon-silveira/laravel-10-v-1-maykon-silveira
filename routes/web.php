@@ -19,3 +19,9 @@ Route::get('/mostrar-cliente', [ClienteController::class, 'mostrar'])->name('cli
 //salvar no banco de dados 
 Route::post('/store-cliente', [ClienteController::class, 'store'])->name('cliente.store');
 
+//visualizar dados de acordo com id
+Route::get('/editar-cliente/{cliente}', [ClienteController::class, 'editar'])->name('cliente.editar');
+
+//editar informações no banco de dados
+Route::put('/update-cliente/{cliente}', [ClienteController::class, 'update'])->name('cliente.update');
+
