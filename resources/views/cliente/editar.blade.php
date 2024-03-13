@@ -81,7 +81,7 @@
       
       <div class="col-md-12 col-lg-12">
        
-        <form class="needs-validation" action="{{ route('cliente.update') }}" method="post">
+        <form class="needs-validation" action="{{ route('cliente.update', ['cliente' => $cliente->id]) }}" method="post">
         @csrf
         @method('PUT')
 

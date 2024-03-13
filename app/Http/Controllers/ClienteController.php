@@ -42,7 +42,7 @@ class ClienteController extends Controller
      Cliente::create($request->all());
 
      //redirecionamento 
-     return redirect()->route('cliente.mostrar')->with('sucesso', 'Cliente cadastrado com sucesso!');
+     return redirect()->route('cliente.index')->with('sucesso', 'Cliente cadastrado com sucesso!');
    }
 
 
@@ -53,8 +53,32 @@ class ClienteController extends Controller
    }
 
    //alterar os dados do cliente a partir do nosso ID
-   public function update()
+   public function update(ClienteRequest $request, Cliente $cliente)
    {
-      dd('atualizar');
+
+     //validar os campos 
+     $request->validated();
+
+     //edita as informações no banco de dados 
+     $cliente->update([
+      'nome' => $request->nome,
+      'fone' => $request->fone,
+      'email' => $request->email,
+      'cpf' => $request->cpf,
+      'nascimento' => $request->nascimento,
+     ]);
+    
+     //redirecionamento 
+     return redirect()->route('cliente.index')->with('sucesso', 'Cliente atualizado com sucesso!');
+      
+   }
+
+   public function destroy(Cliente $cliente)
+   {
+     $cliente->delete();
+
+      //redirecionamento 
+      return redirect()->route('cliente.index')->with('sucesso', 'Cliente excluído com sucesso!');
+      
    }
 }

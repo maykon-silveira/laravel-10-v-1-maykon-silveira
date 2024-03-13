@@ -341,10 +341,15 @@
           </button>
         </div>
       </div>
-
+ 
+       @if(session('sucesso'))
+        <div class="alert alert-success">
+          {{ session('sucesso') }}
+        </div>
+        @endif
       
 
-      <h2>Lista de Clientes</h2>
+    
       <div class="table-responsive small">
         <table class="table table-striped table-sm">
           <thead>
@@ -368,7 +373,16 @@
               <td>{{ $clienteSite->fone }}</td>
               <td>{{ $clienteSite->email }}</td>
               <td><a href="{{ route('cliente.editar', ['cliente' => $clienteSite->id ]) }}" class="btn btn-primary">Editar</a></td>
-              <td><a href="" class="btn btn-danger">Excluir</a></td>
+              <td>
+                <form action="{{ route('cliente.destroy', ['cliente' => $clienteSite->id]) }}" method="post">
+                  @csrf
+                  @method('delete')
+
+                  <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+                
+              
+              </td>
             </tr>
             @empty 
             <tr> <td>Nada foi cadastrado!</td> </tr>
