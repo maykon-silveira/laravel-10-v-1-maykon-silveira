@@ -10,10 +10,18 @@ class ClienteController extends Controller
 {
 
    //listagem de clientes
-   public function index()
+   public function index(Request $request)
    {
+    
+     //busca a partir do termo de pesquisa
+     $termoDePesquisa = $request->input('pesquisa');
+     
      //buscar informações do nosso BD
-     $cliente = Cliente::orderByDesc('created_at')->get();
+     $cliente = Cliente::where('nome', 'like', '%' . $termoDePesquisa . '%')
+     ->orWhere('cpf', 'like', '%' . $termoDePesquisa . '%')
+     ->orWhere('email', 'like', '%' . $termoDePesquisa . '%')
+     ->orderByDesc('created_at')
+     ->get();
 
      //retorna nosso layout 
      return view('cliente/index', ['cliente' => $cliente]);

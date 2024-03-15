@@ -334,6 +334,7 @@
           <div class="btn-group me-2">
             <button type="button" class="btn btn-sm btn-outline-secondary">Importar</button>
             <button type="button" class="btn btn-sm btn-outline-secondary">Exportar</button>
+            <a href="{{ route('cliente.criar') }}" class="btn btn-primary">Novo</a>
           </div>
           <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-1">
             <svg class="bi"><use xlink:href="#calendar3"/></svg>
@@ -341,6 +342,27 @@
           </button>
         </div>
       </div>
+
+      <div class="col-md-12 col-sm-12">
+        <div class="form-group">
+          <form action="{{ route('cliente.index') }}">
+            <div class="row">
+              {{-- COLUNA INPUT --}}
+              <div class="col-md-11 col-sm-12">
+                <input type="text" class="form-control" name="pesquisa" placeholder="Pesuiar por: nome, CPF ou E-mail">
+              </div>
+
+               {{-- COLUNA BUTTON --}}
+              <div class="col-md-1 col-sm-12">
+               <button type="submit" class="btn btn-primary">Buscar</button>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <br>
  
        @if(session('sucesso'))
         <div class="alert alert-success">
