@@ -21,7 +21,8 @@ class ClienteController extends Controller
      ->orWhere('cpf', 'like', '%' . $termoDePesquisa . '%')
      ->orWhere('email', 'like', '%' . $termoDePesquisa . '%')
      ->orderByDesc('created_at')
-     ->get();
+     ->paginate(3)
+     ->withQueryString();
 
      //retorna nosso layout 
      return view('cliente/index', ['cliente' => $cliente]);

@@ -413,6 +413,8 @@
             
           </tbody>
         </table>
+
+        {{ $cliente->onEachSide(0)->links() }}
       </div>
     </main>
   </div>
